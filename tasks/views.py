@@ -1,28 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from tasks.models import Task, TaskForm 
 from django.views.generic import ListView, DetailView
+from django.utils import timezone
 
-class PostsListView(ListView):
+class TasksListView(ListView):
     model = Task              
 
-class PostDetailView(DetailView):
+class TaskDetailView(DetailView):
     model = Task
 
-#def task_new(request):
-#        form = TaskForm()
-#        return render(request, 'tasks/task_new.html', {'form': form})
 
 def task_new(request):
         if request.method == "POST":
             form = TaskForm(request.POST)
             if form.is_valid():
-                task = form.save(commit=False)
-                task.author = request.user
-                task.published_date = timezone.now()
-                task.save()
-                return redirect('tasks.views.task_detail', pk=task.pk)
+                Task = form.save(commit=False)
+                Task.user = request.user
+                Task.pub_date = timezone.now()
+                Task.save()
+                return redirect('list')
         else:
             form = TaskForm()
         return render(request,  'tasks/task_new.html', {'form': form})
+

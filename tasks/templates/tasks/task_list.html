@@ -1,9 +1,9 @@
 {% extends 'tasks/base.html' %}
 {% block content %}
-    {% for post in object_list %}
-        <p>{{ post.datetime }}</p>
-        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-        <p>{{ post.content }}</p>
+    {% for Task in object_list %}
+	<h1><a href="{% url 'task_detail' pk=Task.pk %}">{{ Task.title }}</a></h1>
+        <p>{{ Task.pub_date }}</p>
+        <p>{{ Task.task_text }}</p>
     {% empty %}
     <p>Nothing</p>
     {% endfor %}
