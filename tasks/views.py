@@ -22,7 +22,7 @@ def task_new(request):
                 task.author = request.user
                 task.published_date = timezone.now()
                 task.save()
-                return redirect('tasks.views.task_detail', pk=post.pk)
+                return redirect('tasks.views.task_detail', pk=task.pk)
         else:
             form = TaskForm()
         return render(request,  'tasks/task_new.html', {'form': form})
