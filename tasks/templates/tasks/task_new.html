@@ -1,9 +1,14 @@
     {% extends 'tasks/base.html' %}
 
     {% block content %}
+    
         <h1>New Task</h1>
+        {% if user.is_authenticated %}
         <form method="POST" class="post-form">{% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="save btn btn-default">Save</button>
         </form>
+        {% else %}
+        Только авторизованные пользователи могут добавлять задачи
+        {% endif %}        
     {% endblock %}
