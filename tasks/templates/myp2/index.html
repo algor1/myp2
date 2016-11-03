@@ -1,4 +1,8 @@
 {% extends 'tasks/base.html' %}
 {% block content %}
-  <h1>Стартовая страница</h1>
+<div class="jumbotron">
+  <h1>Стартовая страница!</h1>
+  <p>Здесь вы найдете то что ищете!</p>
+  <p><a class="btn btn-primary btn-lg" href="{% url 'list' %}" role="button">Learn more</a></p>
+</div>
 {% endblock %}
