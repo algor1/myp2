@@ -19,6 +19,10 @@ def task_new(request):
                 Task = form.save(commit=False)
                 Task.user = request.user
                 Task.pub_date = timezone.now()
+
+                if not Task.title:
+                	Task.title=Task.task_text[:50]
+		
                 Task.save()
                 return redirect('list')
         else:

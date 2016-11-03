@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	'bootstrap3',
 	'tasks.apps.TasksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -122,3 +123,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     ("bootstrap", "/bootstrap"),
 ]
+LOGIN_REDIRECT_URL = 'start'
