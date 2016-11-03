@@ -6,6 +6,6 @@ from . import views
 urlpatterns = [
 url(r'^$', TasksListView.as_view(), name='list'), 
 url(r'^(?P<pk>\d+)/$', TaskDetailView.as_view(),name='task_detail'), 
-url(r'newtask/$', views.task_new), 
+url(r'new/$', views.task_new, name='new'), 
 
 ]
