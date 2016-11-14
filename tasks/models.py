@@ -14,3 +14,9 @@ class TaskForm(ModelForm):
 		model = Task
 		fields = ['title','task_text']
 		template_name = 'tasks/task_new.html'
+
+class Images(models.Model):
+    img= models.ImageField()
+    title = models.CharField(max_length=200, blank=True)
+    pub_date = models.DateTimeField('date published')
+    
