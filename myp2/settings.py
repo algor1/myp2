@@ -25,7 +25,7 @@ SECRET_KEY = 'zecos)b1ovn6j0+gi91e3lqpv#p(4!9%--m*dd8%y@8h0p^+jb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['37.204.239.203']
 
 
 # Application definition
