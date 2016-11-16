@@ -1,0 +1,11 @@
+{% extends 'tasks/base.html' %}
+{% block content %}
+    {% for Images in object_list %}
+	<h5><a href="{% url 'task_detail' pk=Task.pk %}">{{ Task.title }}</a></h5>
+        <p>{{ Images.pub_date }}</p>
+        <p>{{ Task.task_text }}</p>
+    {% empty %}
+    <p>Nothing</p>
+    {% endfor %}
+
+{% endblock %}
