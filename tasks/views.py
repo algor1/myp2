@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from tasks.models import Task, TaskForm 
+from tasks.models import Task, TaskForm, Images
 from django.views.generic import ListView, DetailView
 from django.utils import timezone
 
@@ -11,6 +11,8 @@ class TasksListView(ListView):
 class TaskDetailView(DetailView):
     model = Task
 
+class ImagesListView(ListView):
+    model = Images              
 
 def task_new(request):
         if request.method == "POST":
