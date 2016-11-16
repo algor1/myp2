@@ -2,6 +2,7 @@
 {% block content %}
     {% for Images in object_list %}
 	<h5><a href="{% url 'task_detail' pk=Task.pk %}">{{ Task.title }}</a></h5>
+        <img src="{% static post.image.url %}">
         <p>{{ Images.pub_date }}</p>
         <p>{{ Task.task_text }}</p>
     {% empty %}
