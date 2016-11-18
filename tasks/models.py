@@ -1,6 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
+from .utils import make_previews_img_models
 
 # Create your models here.
 class Task(models.Model):
@@ -18,8 +19,17 @@ class TaskForm(ModelForm):
 class Images (models.Model):
     # ...
     title = models.CharField(max_length=200, blank=True)
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    image = models.ImageField(upload_to='image/original/', null=True, blank=True)
     task = models.ForeignKey('Task', on_delete=models.CASCADE,default=1)
+
+    def save(self):
+        try:
+            img_obj = ImageModels.objects.get(id=self.id)
+        except:
+            img_obj = None
+        super(Images,self).save()
+        if not img_obj or img_obj.image != self.image:
+            make_previews_img_models(self, None)
 
 
     def generate_path(instance, filename):
