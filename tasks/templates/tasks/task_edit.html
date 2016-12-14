@@ -9,8 +9,8 @@
     <thead>
     <tr>
     {% for Image in images %}
-	<th><h5><a href="{% url 'task_detail' task_id=Image.task.pk %}">{{ Images.task.title }}</a></h5>
-	<a href="{{Image.image.url}}"> <img src="{% replace_dir_in_img_url Image.image.url '/180x135/' %}" alt=""></a></th>
+	<th><h5><a href="{% url 'task_detail' pk=Image.task.pk %}">{{ Images.task.title }}</a></h5>
+	<a href="{{Image.image.url}}"> <img src="{% replace_dir_in_img_url Image.image.url '/400x300/' %}" alt=""></a></th>
     
     
     {% endfor %}
