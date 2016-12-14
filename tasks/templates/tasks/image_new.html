@@ -1,0 +1,32 @@
+    {% extends 'tasks/base.html' %}
+
+    {% block content %}
+    {% load bootstrap3 %}
+    
+        <h1>Add image</h1>
+        {% if user.is_authenticated %}
+        <form method="POST" class="post-form">{% csrf_token %}
+              {% bootstrap_form form %}
+              {% buttons %}
+            <button type="submit" class="btn btn-primary">{% bootstrap_icon "star" %} Submit</button>
+             {% endbuttons %}
+        </form>
+        {% else %}
+        Только авторизованные пользователи могут добавлять фото
+        {% endif %}        
+    {% endblock %}
+
+
+{% load bootstrap3 %}
+
+{# Display a form #}
+
+<form action="/url/to/submit/" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Submit
+        </button>
+    {% endbuttons %}
+</form>

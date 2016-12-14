@@ -45,4 +45,4 @@ class ImagesForm(ModelForm):
 	class Meta:
 		model = Images
 		fields = ['title','image']
-		template_name = 'tasks/Images_new.html'
+		template_name = 'tasks/image_new.html'

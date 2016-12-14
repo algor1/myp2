@@ -1,6 +1,11 @@
 {% extends 'tasks/base.html' %}
 {% block content %}
+{% load bootstrap3 %}
     <p>{{ object.pub_date }}</p>
     <h2>{{ object.title }}</h2>
     <p>{{ object.task_text }}</p>
+    {% buttons %}
+    <button type="file" class="btn btn-primary">{% bootstrap_icon "star" %} Add images </button>
+    {% endbuttons %}
+
 {% endblock %}

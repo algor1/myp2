@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404,render, redirect
 
 # Create your views here.
-from tasks.models import Task, TaskForm, Images
+from tasks.models import Task, TaskForm, Images, ImagesForm
 from django.views.generic import ListView, DetailView
 from django.utils import timezone
 
@@ -31,3 +31,21 @@ def task_new(request):
             form = TaskForm()
         return render(request,  'tasks/task_new.html', {'form': form})
 
+def image_new(request):
+        if request.method == "POST":
+            form = ImagesForm(request.POST)
+            if form.is_valid():
+                Images = form.save(commit=False)
+		
+                Images.save()
+                return redirect('list')
+        else:
+            form = ImagesForm()
+        return render(request,  'tasks/image_new.html', {'form': form})
+
+
+
+def detail(request, task_id):
+    taskdetail = get_object_or_404(Task, pk=task_id)
+    imagesfortask =Images.objects.filter(task=taskdetail)
+    return render(request, 'tasks/detail.html', {'task': taskdetail,'images':imagesfortask})

@@ -1,0 +1,26 @@
+{% extends 'tasks/base.html' %}
+{% block content %}
+{% load bootstrap3 %}
+{% load image_extras %}
+    <p>{{ task.pub_date }}</p>
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.task_text }}</p>
+    <table class="table">
+    <thead>
+    <tr>
+    {% for Image in images %}
+	<th><h5><a href="{% url 'task_detail' pk=Image.task.pk %}">{{ Images.task.title }}</a></h5>
+	<a href="{{Image.image.url}}"> <img src="{% replace_dir_in_img_url Image.image.url '/400x300/' %}" alt=""></a></th>
+    {% empty %}
+    <p>Nothing</p>
+    {% endfor %}
+    </tr>
+    </thead>
+
+
+
+    {% buttons %}
+    <button type="button" class="btn btn-default">{% bootstrap_icon "star" %} Add images</button>
+    {% endbuttons %}
+
+{% endblock %}
