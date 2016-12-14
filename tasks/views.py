@@ -48,4 +48,4 @@ def image_new(request):
 def detail(request, task_id):
     taskdetail = get_object_or_404(Task, pk=task_id)
     imagesfortask =Images.objects.filter(task=taskdetail)
-    return render(request, 'tasks/detail.html', {'task': taskdetail,'images':imagesfortask})
+    return render(request, 'tasks/task_detail.html', {'task': taskdetail,'images':imagesfortask})
