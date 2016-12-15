@@ -5,7 +5,7 @@
     
         <h1>Add image</h1>
         {% if user.is_authenticated %}
-        <form method="POST" class="post-form">{% csrf_token %}
+        <form method="POST" enctype="multipart/form-data" >{% csrf_token %}
               {% bootstrap_form form %}
               {% buttons %}
             <button type="submit" class="btn btn-primary">{% bootstrap_icon "star" %} Submit</button>
@@ -21,7 +21,7 @@
 
 {# Display a form #}
 
-<form action="/url/to/submit/" method="post" class="form">
+<form action="/url/to/submit/" method="post" class="form" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}

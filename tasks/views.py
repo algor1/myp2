@@ -31,12 +31,13 @@ def task_new(request):
             form = TaskForm()
         return render(request,  'tasks/task_new.html', {'form': form})
 
-def image_new(request):
+def image_new(request, task_id):
         if request.method == "POST":
-            form = ImagesForm(request.POST)
+            form = ImagesForm(request.POST, request.FILES)
             if form.is_valid():
                 Images = form.save(commit=False)
-		
+                Images.task=Task.objects.get(pk=task_id)
+##                Images.image=request.FILES['image']
                 Images.save()
                 return redirect('list')
         else:
