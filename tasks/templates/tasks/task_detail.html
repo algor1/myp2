@@ -11,15 +11,18 @@
     {% for Image in images %}
 	<th><h5><a href="{% url 'task_detail' task_id=Image.task.pk %}">{{ Images.task.title }}</a></h5>
 	<a href="{{Image.image.url}}"> <img src="{% replace_dir_in_img_url Image.image.url '/180x135/' %}" alt=""></a></th>    
-    
     {% endfor %}
     </tr>
     </thead>
+    <a data-toggle="modal" href="#imageNewModal">Edit Contact</a>
 
-
+    {% include "tasks/image_new_modal.html" %}
 
     {% buttons %}
+
     <button type="button" class="btn btn-default">{% bootstrap_icon "star" %} Add images</button>
+
+
     {% endbuttons %}
 
 {% endblock %}

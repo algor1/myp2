@@ -37,7 +37,6 @@ def image_new(request, task_id):
             if form.is_valid():
                 Images = form.save(commit=False)
                 Images.task=Task.objects.get(pk=task_id)
-##                Images.image=request.FILES['image']
                 Images.save()
                 return redirect('list')
         else:
