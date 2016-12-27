@@ -12,5 +12,12 @@
     {% buttons %}
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#imageNewModal">{% bootstrap_icon "star" %} Add images</button>
     {% endbuttons %}
+    {% for Comment in comments %}
+	<p>{{ Comment.text }}</p>
+    {% endfor %}
+    {% include "tasks/comment_new_modal.html" %}
+    {% buttons %}
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#commentNewModal">{% bootstrap_icon "star" %} Add comment</button>
+    {% endbuttons %}
 
 {% endblock %}

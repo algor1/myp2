@@ -1,15 +1,15 @@
-<div class="modal fade" id="imageNewModal" style= "display: none;">
+<div class="modal fade" id="commentNewModal" style= "display: none;">
 <div class="modal-dialog">
 <div class="modal-content">
 <form action="{% url 'task_detail' task_id=task.pk %}" method="post" class="well" enctype="multipart/form-data">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">x</button>
-    <h3>Добавить фото</h3>
+    <h3>Добавить коментарий</h3>
   </div>
   <div class="modal-body">
     {% load bootstrap3 %}
     {% csrf_token %}
-    {% bootstrap_form iform %}
+    {% bootstrap_form cform %}
   </div>
   <div class="modal-footer">
        <input class="btn btn-primary" type="submit" value="Save" />
