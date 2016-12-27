@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404,render, redirect
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-from tasks.models import Task, TaskForm, Images, ImagesForm
+from tasks.models import Task, TaskForm, Images, ImagesForm, Comments, CommentsForm
 from django.views.generic import ListView, DetailView
 from django.utils import timezone
 
@@ -39,15 +39,18 @@ def detail(request, task_id):
 
     taskdetail = get_object_or_404(Task, pk=task_id)
     imagesfortask = Images.objects.filter(task=taskdetail)
+    commentsfortask=Comments.objects.filter(task=taskdetail)
 
     if request.method == "POST":
-       form = ImagesForm(request.POST, request.FILES)
-       if form.is_valid():
-         formImages = form.save(commit=False)
+       iform = ImagesForm(request.POST, request.FILES)
+       if iform.is_valid():
+         formImages = iform.save(commit=False)
          formImages.task=Task.objects.get(pk=task_id)
          formImages.save()
     else:
-         form = ImagesForm()
+        
+         iform = ImagesForm()
+         cform = CommentsForm()
 
-    return render(request, 'tasks/task_detail.html', {'task': taskdetail,'images':imagesfortask, 'form': form})
+    return render(request, 'tasks/task_detail.html', {'task': taskdetail,'images':imagesfortask, 'comments':commentsfortask, 'iform': iform , 'cform': cform})
 	

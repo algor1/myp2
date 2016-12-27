@@ -16,6 +16,14 @@ class TaskForm(ModelForm):
 		fields = ['title','task_text']
 		template_name = 'tasks/task_new.html'
 
+class Comments(models.Model):
+    text = models.TextField()
+    task = models.ForeignKey('Task', on_delete=models.CASCADE,default=1)
+    pub_date = models.DateTimeField('date published')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+
+
+
 class Images (models.Model):
     # ...
     title = models.CharField(max_length=200, blank=True)
@@ -46,3 +54,11 @@ class ImagesForm(ModelForm):
 		model = Images
 		fields = ['title','image']
 		template_name = 'tasks/image_new.html'
+
+class CommentsForm(ModelForm):
+	class Meta:
+		model = Comments
+		fields = ['text']
+		template_name = 'tasks/image_new.html'		
+
+
