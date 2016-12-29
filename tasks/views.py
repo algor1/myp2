@@ -40,17 +40,21 @@ def detail(request, task_id):
     taskdetail = get_object_or_404(Task, pk=task_id)
     imagesfortask = Images.objects.filter(task=taskdetail)
     commentsfortask=Comments.objects.filter(task=taskdetail)
-
+    iform = ImagesForm(request.POST or None,request.FILES or None)
+    cform = CommentsForm(request.POST or None)
     if request.method == "POST":
-       iform = ImagesForm(request.POST, request.FILES)
        if iform.is_valid():
-         formImages = iform.save(commit=False)
-         formImages.task=Task.objects.get(pk=task_id)
-         formImages.save()
-    else:
-        
-         iform = ImagesForm()
-         cform = CommentsForm()
+         if iform.cleaned_data['image']  is not None:
+           formImages = iform.save(commit=False)
+           formImages.task=Task.objects.get(pk=task_id)
+           formImages.save()
+       if cform.is_valid():
+         formComments = cform.save(commit=False)
+         formComments.user = request.user
+         formComments.pub_date = timezone.now()
+         formComments.task=Task.objects.get(pk=task_id)
+         formComments.save()
+
 
     return render(request, 'tasks/task_detail.html', {'task': taskdetail,'images':imagesfortask, 'comments':commentsfortask, 'iform': iform , 'cform': cform})
 	

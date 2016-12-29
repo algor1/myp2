@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^$', views.index, name='start'),
     url(r'^admin/', admin.site.urls),
     url(r'^tasks/', include('tasks.urls')),
+    url(r'^comments/', include('django_comments.urls')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
 
 ]

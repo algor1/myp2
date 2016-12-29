@@ -20,4 +20,13 @@
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#commentNewModal">{% bootstrap_icon "star" %} Add comment</button>
     {% endbuttons %}
 
+{% load comments %}
+{% get_comment_list for tasks.task object_pk as comment_list %}
+{% for comment in comment_list %}
+<p>Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
+...
+<p>Comment: {{ comment.comment }}</p>
+...
+{% endfor %}
+
 {% endblock %}

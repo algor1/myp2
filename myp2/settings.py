@@ -32,7 +32,9 @@ ALLOWED_HOSTS = ['37.204.239.203']
 
 INSTALLED_APPS = [
 	'bootstrap3',
+	'django_comments',
 	'tasks.apps.TasksConfig',
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -135,3 +137,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 BOOTSTRAP3 = {
     'include_jquery': True,
 }
+
+SITE_ID=1
